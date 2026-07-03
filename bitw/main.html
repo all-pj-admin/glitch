@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLITCH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glitch-root" id="root">
+
+  <div class="gl-scanline"></div>
+  <div class="gl-vignette"></div>
+  <div class="gl-bg"></div>
+  <div class="gl-cursor" id="cursor"><img src="assets/glitch_cursor.png" alt=""></div>
+
+  <div class="gl-topbar" style="background:linear-gradient(180deg, rgba(0,0,0,.85), transparent);">
+    <a class="gl-brand" href="index.html"><span class="g">[G]</span><span class="name">//GLITCH</span></a>
+    <div class="gl-langs" id="langs"></div>
+  </div>
+
+  <!-- HERO -->
+  <section style="position:relative; z-index:30; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 22px 80px;">
+    <div style="animation:gl-flicker 5s infinite; margin-bottom:30px;">
+      <img src="assets/glitch_logo.png" alt="GLITCH" style="display:block; width:120px; height:120px; object-fit:cover;">
+    </div>
+    <div id="tagline" style="font-family:'Noto Sans JP','JetBrains Mono',sans-serif; font-weight:700; font-size:clamp(22px,3.8vw,40px); line-height:1.45; color:#f2f2f2; max-width:820px; letter-spacing:.5px;"></div>
+    <div style="margin-top:44px; display:flex; flex-direction:column; align-items:center; gap:10px; animation:gl-bob 2.4s ease-in-out infinite; color:#5a5a5a; font-size:10px; letter-spacing:3px;">
+      <span id="scrollHint">SCROLL TO DECODE</span>
+      <span style="font-size:14px;">↓</span>
+    </div>
+  </section>
+
+  <!-- 01 MANIFESTO -->
+  <section style="position:relative; z-index:30; max-width:740px; margin:0 auto; padding:90px 24px;">
+    <div style="font-size:12px; letter-spacing:4px; color:#12f0e0; margin-bottom:18px;">// 01 · MANIFESTO</div>
+    <h2 id="s1Title" style="font-family:'Noto Sans JP',sans-serif; font-weight:900; font-size:clamp(30px,5.2vw,52px); line-height:1.2; color:#fff; margin:0 0 34px;"></h2>
+    <p id="s1P1" style="font-size:clamp(15px,1.6vw,17px); line-height:2.05; color:#b2b2b2; margin:0 0 22px; text-wrap:pretty;"></p>
+    <p id="s1P2" style="font-size:clamp(15px,1.6vw,17px); line-height:2.05; color:#b2b2b2; margin:0; text-wrap:pretty;"></p>
+    <div style="display:flex; justify-content:center; margin-top:56px;">
+      <img src="assets/glitch_st_01.png" alt="" style="width:clamp(200px,34vw,280px); height:clamp(200px,34vw,280px); border-radius:50%; -webkit-mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); filter:sepia(.5) hue-rotate(60deg) saturate(2.4) contrast(1.16) brightness(1.14) drop-shadow(0 0 32px rgba(70,255,100,.6)); animation:gl-imgglitch 5.5s linear 0s infinite;">
+    </div>
+  </section>
+
+  <!-- 02 THE ENEMY -->
+  <section style="position:relative; z-index:30; max-width:740px; margin:0 auto; padding:90px 24px;">
+    <div style="font-size:12px; letter-spacing:4px; color:#12f0e0; margin-bottom:18px;">// 02 · THE ENEMY</div>
+    <h2 id="s2Title" style="font-family:'Noto Sans JP',sans-serif; font-weight:900; font-size:clamp(30px,5.2vw,52px); line-height:1.2; color:#fff; margin:0 0 34px;"></h2>
+    <p id="s2P1" style="font-size:clamp(15px,1.6vw,17px); line-height:2.05; color:#b2b2b2; margin:0 0 22px; text-wrap:pretty;"></p>
+    <p id="s2P2" style="font-size:clamp(15px,1.6vw,17px); line-height:2.05; color:#b2b2b2; margin:0; text-wrap:pretty;"></p>
+    <div style="display:flex; justify-content:center; margin-top:56px;">
+      <img src="assets/glitch_st_03.png" alt="" style="width:clamp(200px,34vw,280px); height:clamp(200px,34vw,280px); border-radius:50%; -webkit-mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); filter:sepia(.5) hue-rotate(60deg) saturate(2.4) contrast(1.16) brightness(1.14) drop-shadow(0 0 32px rgba(70,255,100,.6)); animation:gl-imgglitch 5.5s linear -2.2s infinite;">
+    </div>
+  </section>
+
+  <!-- 03 NO PROPHET -->
+  <section style="position:relative; z-index:30; max-width:820px; margin:0 auto; padding:110px 24px; text-align:center;">
+    <div style="font-size:12px; letter-spacing:4px; color:#12f0e0; margin-bottom:26px;">// 03 · NO PROPHET</div>
+    <blockquote id="s3Quote" style="margin:0 0 40px; font-family:'Noto Sans JP',sans-serif; font-weight:700; font-size:clamp(24px,4.2vw,44px); line-height:1.5; color:#fff; letter-spacing:.5px; text-shadow:2px 0 #ff2e57,-2px 0 #12f0e0;"></blockquote>
+    <p id="s3P1" style="font-size:clamp(15px,1.6vw,17px); line-height:2.05; color:#b2b2b2; margin:0 auto; max-width:640px; text-align:left; text-wrap:pretty;"></p>
+  </section>
+
+  <!-- 04 GLOSSARY -->
+  <section style="position:relative; z-index:30; max-width:740px; margin:0 auto; padding:90px 24px;">
+    <div style="font-size:12px; letter-spacing:4px; color:#12f0e0; margin-bottom:18px;">// 04 · GLOSSARY</div>
+    <h2 id="s4Title" style="font-family:'Noto Sans JP',sans-serif; font-weight:900; font-size:clamp(30px,5.2vw,52px); line-height:1.2; color:#fff; margin:0 0 44px;"></h2>
+    <div style="display:flex; flex-direction:column;">
+      <div style="border-top:1px solid #1e1e1e; padding:26px 0; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:18px; letter-spacing:2px; color:#12f0e0;">NPC</div>
+        <div id="s4Npc" style="font-size:clamp(14px,1.5vw,16px); line-height:1.9; color:#a8a8a8; text-wrap:pretty;"></div>
+      </div>
+      <div style="border-top:1px solid #1e1e1e; padding:26px 0; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:18px; letter-spacing:2px; color:#12f0e0;">GLITCHER</div>
+        <div id="s4Glitcher" style="font-size:clamp(14px,1.5vw,16px); line-height:1.9; color:#a8a8a8; text-wrap:pretty;"></div>
+      </div>
+      <div style="border-top:1px solid #1e1e1e; border-bottom:1px solid #1e1e1e; padding:26px 0; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:18px; letter-spacing:2px; color:#12f0e0;">HACKING</div>
+        <div id="s4Hacking" style="font-size:clamp(14px,1.5vw,16px); line-height:1.9; color:#a8a8a8; text-wrap:pretty;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SIGNAL / SNS -->
+  <section style="position:relative; z-index:30; max-width:740px; margin:0 auto; padding:90px 24px 40px;">
+    <div style="display:flex; justify-content:center; margin-bottom:56px;">
+      <img src="assets/glitch_st_04.png" alt="" style="width:clamp(180px,29vw,240px); height:clamp(180px,29vw,240px); border-radius:50%; -webkit-mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); mask:radial-gradient(circle at 50% 50%, #000 54%, transparent 80%); filter:sepia(.5) hue-rotate(60deg) saturate(2.4) contrast(1.16) brightness(1.14) drop-shadow(0 0 32px rgba(70,255,100,.6)); animation:gl-imgglitch 5.5s linear -3.8s infinite;">
+    </div>
+    <div style="font-size:12px; letter-spacing:4px; color:#12f0e0; margin-bottom:18px; text-align:center;">// 05 · SIGNAL</div>
+    <h2 id="s5Title" style="font-family:'Noto Sans JP',sans-serif; font-weight:900; font-size:clamp(30px,5.2vw,52px); line-height:1.2; color:#fff; margin:0 0 28px; text-align:center;"></h2>
+    <p id="s5Note" style="font-size:clamp(14px,1.5vw,16px); line-height:2; color:#a8a8a8; margin:0 auto 44px; max-width:600px; text-align:center; text-wrap:pretty;"></p>
+    <div id="s5Intro" style="text-align:center; font-size:13px; letter-spacing:2px; color:#e0e0e0; margin-bottom:22px;"></div>
+
+    <div style="display:flex; justify-content:center; gap:20px;">
+      <a id="linkX" href="https://x.com/glitch_bitw" target="_blank" rel="noopener" aria-label="X" style="display:flex; align-items:center; justify-content:center; width:78px; height:78px; border:1px solid #242424; background:rgba(10,10,10,.7); text-decoration:none;">
+        <img src="assets/x_logo.svg" alt="X" style="width:27px; height:27px;">
+      </a>
+      <a id="linkDiscord" href="https://discord.gg/hdgBYTpcE" target="_blank" rel="noopener" aria-label="Discord" style="display:flex; align-items:center; justify-content:center; width:78px; height:78px; border:1px solid #242424; background:rgba(10,10,10,.7); text-decoration:none;">
+        <img src="assets/discord_logo.svg" alt="Discord" style="width:38px; height:29px;">
+      </a>
+    </div>
+  </section>
+
+  <footer class="gl-footer" style="margin-top:60px; padding:30px 26px;">
+    <span>[ G ] · //GLITCH · CLOSED_COMMUNITY</span>
+    <span id="footerText"></span>
+  </footer>
+</div>
+
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script src="app-main.js"></script>
+</body>
+</html>

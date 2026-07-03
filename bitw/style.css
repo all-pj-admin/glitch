@@ -1,0 +1,99 @@
+/* GLITCH — 共通スタイル（ログインページ・メインページ両方で読み込む） */
+
+html, body { margin:0; padding:0; background:#000; }
+* { box-sizing:border-box; }
+
+@media (pointer:fine){ .glitch-root, .glitch-root * { cursor:none !important; } }
+
+@keyframes gl-blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+@keyframes gl-scan { 0%{transform:translateY(0)} 100%{transform:translateY(4px)} }
+@keyframes gl-flicker { 0%,100%{opacity:.9} 92%{opacity:.9} 93%{opacity:.4} 94%{opacity:.9} 96%{opacity:.6} 97%{opacity:.95} }
+@keyframes gl-shift { 0%,100%{transform:translate(0,0)} 20%{transform:translate(-2px,1px)} 40%{transform:translate(2px,-1px)} 60%{transform:translate(-1px,-1px)} 80%{transform:translate(1px,1px)} }
+@keyframes gl-glitchtext { 0%{clip-path:inset(0 0 0 0);transform:translate(0)} 20%{clip-path:inset(30% 0 40% 0);transform:translate(-3px)} 40%{clip-path:inset(60% 0 10% 0);transform:translate(3px)} 60%{clip-path:inset(10% 0 70% 0);transform:translate(-2px)} 80%{clip-path:inset(50% 0 20% 0);transform:translate(2px)} 100%{clip-path:inset(0 0 0 0);transform:translate(0)} }
+@keyframes gl-fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+@keyframes gl-fade { from{opacity:0} to{opacity:1} }
+@keyframes gl-cursorflick { 0%,100%{opacity:1} 90%{opacity:1} 92%{opacity:.3} 94%{opacity:1} }
+@keyframes gl-ping { 0%{opacity:.9;transform:translate(-50%,-50%) scale(.6)} 100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)} }
+@keyframes gl-screenglitch { 0%{filter:none;transform:translate(0)} 12%{filter:invert(1);transform:translate(-5px,1px)} 24%{filter:none;transform:translate(5px,-1px)} 40%{filter:invert(1) hue-rotate(90deg);transform:translate(-3px,0)} 55%{filter:none;transform:translate(3px,1px)} 70%{filter:invert(1);transform:translate(-2px,0)} 100%{filter:none;transform:translate(0)} }
+@keyframes gl-bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+@keyframes gl-bgflux {
+  0%,100% { transform:scale(1.06) translate(0,0); filter:none; }
+  12% { transform:scale(1.06) translate(-5px,3px); }
+  26% { transform:scale(1.065) translate(4px,-3px); }
+  40% { transform:scale(1.06) translate(-3px,2px); }
+  48.8% { transform:scale(1.06) translate(0,0); filter:none; }
+  49.4% { transform:scale(1.07) translate(-18px,0) skewX(4deg); filter:brightness(1.7) hue-rotate(35deg); }
+  50% { transform:scale(1.06) translate(15px,-2px) skewX(-3deg); filter:brightness(1.35); }
+  50.6% { transform:scale(1.06) translate(0,0); filter:none; }
+  64% { transform:scale(1.065) translate(3px,3px); }
+  80% { transform:scale(1.06) translate(-4px,-2px); }
+  88.6% { transform:scale(1.06) translate(0,0); filter:none; }
+  89.2% { transform:scale(1.07) translate(12px,0) skewX(-3deg); filter:brightness(1.5); }
+  90% { transform:scale(1.06) translate(0,0); filter:none; }
+}
+@keyframes gl-imgglitch {
+  0%,82%,100% { clip-path:inset(0 0 0 0); transform:translate(0,0); filter:sepia(.5) hue-rotate(60deg) saturate(2.4) contrast(1.16) brightness(1.14) drop-shadow(0 0 32px rgba(70,255,100,.6)); }
+  84% { clip-path:inset(12% 0 58% 0); transform:translate(-7px,0) skewX(-2.5deg); filter:sepia(.5) hue-rotate(60deg) saturate(2.8) brightness(1.35) drop-shadow(4px 0 #ff2e57) drop-shadow(-4px 0 #12f0e0) drop-shadow(0 0 38px rgba(90,255,110,.75)); }
+  87% { clip-path:inset(55% 0 14% 0); transform:translate(8px,0); filter:sepia(.5) hue-rotate(60deg) saturate(2.5) brightness(1.2) drop-shadow(-4px 0 #12f0e0) drop-shadow(3px 0 #ff2e57) drop-shadow(0 0 34px rgba(90,255,120,.7)); }
+  90% { clip-path:inset(32% 0 42% 0); transform:translate(-4px,0); filter:sepia(.5) hue-rotate(60deg) saturate(2.6) brightness(1.16) drop-shadow(0 0 46px rgba(100,255,140,.85)); }
+  92% { clip-path:inset(0 0 0 0); transform:translate(0,0); }
+}
+@keyframes gl-greenpulse { 0%,100%{opacity:.35} 50%{opacity:.7} }
+
+::selection { background:#e6e6e6; color:#000; }
+.gl-input::placeholder { color:#4a4a4a; }
+.gl-input:focus { outline:none; }
+
+.glitch-root {
+  position:relative; width:100%; min-height:100vh;
+  background:#000; color:#e8e8e8;
+  font-family:'JetBrains Mono','Noto Sans JP',monospace;
+  overflow-x:hidden;
+}
+
+.gl-scanline {
+  position:fixed; inset:0; pointer-events:none; z-index:60;
+  background:repeating-linear-gradient(0deg, rgba(255,255,255,.028) 0px, rgba(255,255,255,.028) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode:screen; animation:gl-scan .6s steps(2) infinite;
+}
+.gl-vignette {
+  position:fixed; inset:0; pointer-events:none; z-index:59;
+  background:radial-gradient(ellipse at center, transparent 46%, rgba(0,0,0,.6) 100%);
+}
+.gl-bg {
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.3;
+  background:url(assets/glitch_back.png) center/cover no-repeat;
+  will-change:transform,filter; animation:gl-bgflux 11s linear infinite;
+}
+.gl-cursor {
+  position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
+  will-change:transform; opacity:0;
+}
+.gl-cursor img {
+  display:block; width:26px; height:26px; object-fit:contain;
+  filter:drop-shadow(1.6px 0 #ff2e57) drop-shadow(-1.6px 0 #12f0e0);
+  animation:gl-cursorflick 2.2s infinite, gl-shift .18s steps(2) infinite;
+}
+
+.gl-topbar {
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 26px; font-size:11px; letter-spacing:2px; color:#6a6a6a;
+}
+.gl-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.gl-brand .g { color:#fff; font-weight:800; text-shadow:1.2px 0 #ff2e57,-1.2px 0 #12f0e0; }
+.gl-brand .name { color:#8a8a8a; }
+.gl-langs { display:flex; align-items:center; gap:2px; }
+.gl-langs button {
+  background:none; border:none; padding:5px 7px; font-family:inherit;
+  font-size:11px; letter-spacing:1px; cursor:pointer;
+  color:#5a5a5a; border-bottom:1px solid transparent;
+}
+.gl-langs button:hover { color:#fff; }
+.gl-langs button.active { color:#e8e8e8; border-bottom:1px solid #e8e8e8; }
+
+.gl-footer {
+  position:relative; z-index:30; border-top:1px solid #161616;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:12px; font-size:10px; letter-spacing:2px; color:#3a3a3a;
+}

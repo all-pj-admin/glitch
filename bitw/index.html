@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLITCH // ACCESS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glitch-root" id="root">
+
+  <div class="gl-scanline"></div>
+  <div class="gl-vignette"></div>
+  <div class="gl-bg"></div>
+
+  <div class="gl-cursor" id="cursor"><img src="assets/glitch_cursor.png" alt=""></div>
+
+  <div class="gl-topbar">
+    <div class="gl-brand"><span class="g">[G]</span><span class="name">//GLITCH</span></div>
+    <div class="gl-langs" id="langs"></div>
+  </div>
+
+  <div style="position:relative; z-index:30; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:96px 22px 120px;">
+
+    <div style="animation:gl-flicker 5s infinite; margin-bottom:26px;">
+      <img src="assets/glitch_logo.png" alt="GLITCH" style="display:block; width:132px; height:132px; object-fit:cover; filter:contrast(1.05);">
+    </div>
+
+    <div style="position:relative; max-width:760px; text-align:center; margin-bottom:8px;">
+      <div id="manifesto" style="font-family:'Noto Sans JP','JetBrains Mono',sans-serif; font-weight:700; font-size:clamp(20px,3.4vw,34px); line-height:1.45; color:#f2f2f2; letter-spacing:.5px;"></div>
+    </div>
+    <div style="font-size:11px; letter-spacing:3px; color:#5a5a5a; margin-bottom:40px;">// SYSTEM_BUG_PROTOCOL · v0.1</div>
+
+    <!-- ==== IDLE ==== -->
+    <div id="view-idle" style="width:100%; max-width:560px; display:flex; flex-direction:column; gap:26px; animation:gl-fadein .5s both;">
+
+      <div style="border:1px solid #222; background:rgba(10,10,10,.72); backdrop-filter:blur(2px);">
+        <div style="display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #1c1c1c; font-size:10px; letter-spacing:2px; color:#6a6a6a;">
+          <span>ROUTE_B · GUERRILLA_CODE</span><span style="color:#12f0e0;">LVL_2</span>
+        </div>
+        <form id="form-code" style="padding:18px 16px 16px;">
+          <div id="t-enterCode" style="font-size:12px; letter-spacing:1px; color:#8a8a8a; margin-bottom:12px;"></div>
+          <div style="display:flex; align-items:center; gap:8px; border:1px solid #333; background:#000; padding:12px 14px;">
+            <input id="input-code" class="gl-input" placeholder="GLITCH-0000-0000" spellcheck="false" autocomplete="off" style="flex:1; background:none; border:none; color:#fff; font-family:inherit; font-size:15px; letter-spacing:2px; text-transform:uppercase;">
+            <span style="width:9px; height:16px; background:#e8e8e8; animation:gl-blink 1s steps(1) infinite;"></span>
+          </div>
+          <div id="err-code" style="display:none; margin-top:9px; font-size:11px; letter-spacing:1px; color:#ff2e57;"></div>
+          <button id="t-execute" type="submit" style="margin-top:14px; width:100%; padding:13px; background:#e8e8e8; border:none; color:#000; font-family:inherit; font-weight:800; font-size:12px; letter-spacing:3px; cursor:pointer;"></button>
+        </form>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:14px; color:#3a3a3a; font-size:10px; letter-spacing:3px;">
+        <div style="flex:1; height:1px; background:#1e1e1e;"></div><span id="t-noCode"></span><div style="flex:1; height:1px; background:#1e1e1e;"></div>
+      </div>
+
+      <div style="border:1px solid #1c1c1c; background:rgba(6,6,6,.6);">
+        <div style="display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #161616; font-size:10px; letter-spacing:2px; color:#5a5a5a;">
+          <span>ROUTE_A · WAITLIST</span><span style="color:#6a6a6a;">LVL_1</span>
+        </div>
+        <form id="form-email" style="padding:16px;">
+          <div id="t-routeADesc" style="font-size:11px; letter-spacing:.5px; color:#6a6a6a; margin-bottom:12px; line-height:1.6;"></div>
+          <div style="display:flex; gap:8px; border:1px solid #262626; background:#000; padding:11px 13px;">
+            <input id="input-email" class="gl-input" type="email" placeholder="your.address@net.com" spellcheck="false" autocomplete="off" style="flex:1; background:none; border:none; color:#dcdcdc; font-family:inherit; font-size:14px; letter-spacing:1px;">
+          </div>
+          <div id="err-email" style="display:none; margin-top:9px; font-size:11px; letter-spacing:1px; color:#ff2e57;"></div>
+          <button id="t-joinQueue" type="submit" style="margin-top:13px; width:100%; padding:12px; background:none; border:1px solid #3a3a3a; color:#cfcfcf; font-family:inherit; font-weight:700; font-size:11px; letter-spacing:3px; cursor:pointer;"></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==== REGISTER ==== -->
+    <div id="view-register" style="display:none; width:100%; max-width:560px; border:1px solid #2a2a2a; background:rgba(8,8,8,.82); animation:gl-fadein .5s both;">
+      <div style="display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #1c1c1c; font-size:10px; letter-spacing:2px; color:#6a6a6a;">
+        <span>CODE_OK · REGISTER_ID</span><span style="color:#12f0e0;">LVL_2</span>
+      </div>
+      <form id="form-register" style="padding:22px 18px 18px;">
+        <div id="t-regOk" style="font-size:11px; letter-spacing:2px; color:#12f0e0; margin-bottom:10px;"></div>
+        <div id="t-regDesc" style="font-size:12px; letter-spacing:.5px; color:#8a8a8a; margin-bottom:16px; line-height:1.7;"></div>
+        <div id="t-regEnter" style="font-size:12px; letter-spacing:1px; color:#8a8a8a; margin-bottom:12px;"></div>
+        <div style="display:flex; align-items:center; gap:8px; border:1px solid #333; background:#000; padding:12px 14px;">
+          <input id="input-email-register" class="gl-input" type="email" placeholder="your.address@net.com" spellcheck="false" autocomplete="off" style="flex:1; background:none; border:none; color:#fff; font-family:inherit; font-size:15px; letter-spacing:1px;">
+          <span style="width:9px; height:16px; background:#e8e8e8; animation:gl-blink 1s steps(1) infinite;"></span>
+        </div>
+        <div id="err-email-register" style="display:none; margin-top:9px; font-size:11px; letter-spacing:1px; color:#ff2e57;"></div>
+        <button id="t-regSubmit" type="submit" style="margin-top:16px; width:100%; padding:13px; background:#e8e8e8; border:none; color:#000; font-family:inherit; font-weight:800; font-size:12px; letter-spacing:3px; cursor:pointer;"></button>
+        <button id="t-regSkip" type="button" style="margin-top:12px; width:100%; padding:11px; background:none; border:1px dashed #3a3a3a; color:#7a7a7a; font-family:inherit; font-size:10px; letter-spacing:2px; cursor:pointer;"></button>
+        <button id="t-ret-1" type="button" style="margin-top:14px; width:100%; background:none; border:none; color:#5a5a5a; font-family:inherit; font-size:10px; letter-spacing:2px; cursor:pointer;"></button>
+      </form>
+    </div>
+
+    <!-- ==== RANKED ==== -->
+    <div id="view-ranked" style="display:none; width:100%; max-width:560px; border:1px solid #222; background:rgba(8,8,8,.8); animation:gl-fadein .5s both;">
+      <div style="display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #1c1c1c; font-size:10px; letter-spacing:2px; color:#6a6a6a;">
+        <span>WAITLIST · CONFIRMED</span><span style="color:#12f0e0;">LVL_1</span>
+      </div>
+      <div style="padding:26px 20px 22px; text-align:center;">
+        <div id="t-rankLabel" style="font-size:11px; letter-spacing:2px; color:#6a6a6a; margin-bottom:6px;"></div>
+        <div id="rankStr" style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:clamp(42px,9vw,68px); line-height:1; color:#fff; letter-spacing:1px; text-shadow:2px 0 #ff2e57,-2px 0 #12f0e0;"></div>
+        <div id="t-rankBody" style="margin-top:16px; font-size:12px; letter-spacing:.5px; color:#9a9a9a; line-height:1.7;"></div>
+
+        <div style="margin-top:22px; text-align:left; border:1px solid #262626; background:#000; padding:11px 13px; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:10px; letter-spacing:1px; color:#5a5a5a; white-space:nowrap;">REF_LINK</span>
+          <input id="refLink" readonly style="flex:1; min-width:0; background:none; border:none; color:#cfcfcf; font-family:inherit; font-size:12px; letter-spacing:.5px;">
+          <button id="copyLink" style="background:none; border:1px solid #333; color:#9a9a9a; font-family:inherit; font-size:10px; letter-spacing:1px; padding:6px 10px; cursor:pointer;"></button>
+        </div>
+
+        <button id="t-ret-2" type="button" style="margin-top:20px; background:none; border:none; color:#5a5a5a; font-family:inherit; font-size:10px; letter-spacing:2px; cursor:pointer;"></button>
+      </div>
+    </div>
+
+    <!-- ==== GRANTED ==== -->
+    <div id="view-granted" style="display:none; width:100%; max-width:560px; border:1px solid #2a2a2a; background:rgba(8,8,8,.85); animation:gl-fadein .5s both;">
+      <div style="display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #1c1c1c; font-size:10px; letter-spacing:2px; color:#6a6a6a;">
+        <span>AUTH · SUCCESS</span><span style="color:#12f0e0;" id="grantedLevelTag">LVL_2</span>
+      </div>
+      <div style="padding:30px 22px; text-align:center;">
+        <div id="grantHeadline" style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:clamp(24px,5vw,38px); color:#fff; letter-spacing:3px; text-shadow:2px 0 #ff2e57,-2px 0 #12f0e0;">ACCESS GRANTED</div>
+        <div id="t-grantBody" style="margin-top:14px; font-size:12px; letter-spacing:.5px; color:#9a9a9a; line-height:1.7;"></div>
+        <div id="grantStatusLine" style="margin-top:8px; font-size:11px; letter-spacing:1px; color:#12f0e0;"></div>
+        <a id="t-infiltrate" href="main.html" style="display:block; margin-top:26px; padding:14px; background:#e8e8e8; color:#000; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:3px;"></a>
+        <button id="t-logout" type="button" style="margin-top:16px; background:none; border:none; color:#5a5a5a; font-family:inherit; font-size:10px; letter-spacing:2px; cursor:pointer;"></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="position:fixed; bottom:0; left:0; right:0; z-index:40; display:flex; justify-content:space-between; padding:16px 26px; font-size:10px; letter-spacing:2px; color:#3a3a3a;">
+    <span id="t-footer"></span>
+    <span>[ G ] · CLOSED_COMMUNITY</span>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script src="app-login.js"></script>
+</body>
+</html>
