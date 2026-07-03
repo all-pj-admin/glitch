@@ -100,4 +100,13 @@
   glitchInitCursor(root, document.getElementById('cursor'));
   renderLangButtons();
   renderTexts();
+
+  // アクセス記録（失敗しても画面には何も表示しない）
+  var scriptUrl = GLITCH_CONFIG.GOOGLE_SCRIPT_URL;
+  if (scriptUrl && scriptUrl.indexOf('PASTE_YOUR') !== 0) {
+    fetch(scriptUrl, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'logVisit', page: 'main', lang: state.lang, ref: document.referrer || '' })
+    }).catch(() => {});
+  }
 })();
