@@ -308,4 +308,7 @@
   renderLangButtons();
   renderTexts();
   switchView('idle');
+
+  // アクセス記録（失敗しても画面には何も表示しない）
+  callScript({ action: 'logVisit', page: 'login', lang: state.lang, ref: document.referrer || '' }).catch(() => {});
 })();
